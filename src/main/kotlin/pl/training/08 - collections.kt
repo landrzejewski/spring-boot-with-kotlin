@@ -11,5 +11,4 @@ package pl.training
 fun main() {
     val numbers = mutableSetOf(1, 2, 3)
     numbers.add(6)
-
 }

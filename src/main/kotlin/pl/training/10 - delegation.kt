@@ -39,13 +39,17 @@ val lazyValue: String by lazy {
     "Some value"
 }
 
+
+
 class Counter {
-    var value: Int by observable(0) { prop, oldValue, newValue ->
+    var value: Int by observable(0, this::onChange)
+
+    fun onChange(property: KProperty<*>, oldValue: Int, newValue: Int) {
         println("$oldValue => $newValue")
     }
 }
 
-class Participant(map: Map<String, Any?>) {
+class Participant(map: Map<String, Any>) {
     val name: String by map
     val age: Int     by map
 
@@ -89,7 +93,7 @@ fun main() {
 
     Counter().value++
 
-    val user = Participant(mapOf(
+    val user = Participant(mapOf<String, Any>(
         "name" to "John Doe",
         "age"  to 25
     ))

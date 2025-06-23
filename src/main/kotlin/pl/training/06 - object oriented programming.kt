@@ -2,11 +2,16 @@ package pl.training
 
 import java.io.Serializable
 
+fun main() {
+    val account = Account("111111")
+    account.owner = "Jan"
+    val owner = account.owner
+    println(owner)
+    Account.DEFAULT_CURRENCY
+}
+
 // Minimalistic class definition
 class Money
-
-fun test() {
-}
 
 open class Account /*constructor*/(private val number: String) { // primary constructor with one private, immutable argument/property definition
 
@@ -31,11 +36,6 @@ open class Account /*constructor*/(private val number: String) { // primary cons
     // default constructor body
     init {
         println("First init")
-    }
-
-    // another default constructor body
-    init {
-        println("Second init")
     }
 
     // additional constructor, it needs to call the primary constructor
@@ -206,6 +206,7 @@ fun String.removeQuotes() = replace("\"", "").trim()
 val <T> List<T>.lastIndex: Int
     get() = size - 1
 
+
 class Report {
 
     companion object {
@@ -239,7 +240,7 @@ value class Password(private val text: String)
 
 class Profile(val userName: Username, val password: Password)
 
-fun main() {
+fun sss() {
     val account = Account("123456")
     account.printBalance()
     account.balance = 100.0 // setter call, possible because of var declaration
