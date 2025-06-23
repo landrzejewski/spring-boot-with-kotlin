@@ -79,7 +79,7 @@ fun main() {
             ushr - shifts the left value right by the right number of bits, filling the leftmost bits with zeros
     */
 
-    println(0b0101 and 0b0001) // 1, that is 0b0001
+    println(0b0101 and 0b0001) // 1, that is 0b0001 the same as 0b0101.and(0b0001)
     println(0b0101 or 0b0001) // 5, that is 0b0101
 
     /*
@@ -127,6 +127,12 @@ fun main() {
     print(numbers.size) // 5
     val secondValue = numbers[1] // 2
 
+    // Array(5, { index -> return index + 1 })
+
+    /*Array(5) { index ->
+        index + 1
+    }*/
+
     Array(5) { it + 1 }.forEach { println(it) }
 
     /*
@@ -148,6 +154,7 @@ fun main() {
         is String -> print(response.length + 1)
         is Int -> print(response)
     }
+
 
     // val responseText = response as String // explicit casting
     // val responseText = response as? String
@@ -171,7 +178,7 @@ fun main() {
 
     // val contact: Contact = null // compilation error, it's impossible to assign null to regular type
      val contact: Contact? = null // declaration of nullable type (regular type name with a question mark)
-     // val contactName = contact.name // compilation error, name cannot be accessed without checking if contact is null or use of safe call
+    // val contactName = contact.name // compilation error, name cannot be accessed without checking if contact is null or use of safe call
     val nameLength = contact?.name?.length // safe call, nameLength type is Int?
     val length = nameLength ?: 0 // Elvis operator, length type is Int
 
@@ -196,6 +203,7 @@ fun main() {
     /*
       Kotlin allows to override the predefined set of operators on types.
       To implement an operator, one has to create a member function or an extension function with a specific name for the corresponding type.
+      https://kotlinlang.org/docs/operator-overloading.html#in-operator
     */
 
     class Money(val value: Double, val currency: String) {

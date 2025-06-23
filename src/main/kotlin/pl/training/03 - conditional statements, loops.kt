@@ -17,14 +17,14 @@ fun main() {
 
     */
 
-    val value: Any? = null
+    val value: Int? = null
     when (value) {
         1 -> println("One")
         2 -> println("Two")
         3, 4, 5 -> println("Three, four or five")
         in 6..10 -> println("between 6 and 10")
-        // value > 0 -> println("between 6 and 10")
-        // is String ->  println("Is text")
+        // (value > 0) -> println("between 6 and 10")
+        is String ->  println("Is text")
         // test() -> println("Is null")
         null -> println("Is null")
         else -> {

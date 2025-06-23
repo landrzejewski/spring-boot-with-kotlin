@@ -1,5 +1,7 @@
 package pl.training
 
+import pl.training.util.myMod
+
 /*
     The function declaration is done with the `fun` keyword.
     Functions can be defined:
@@ -43,7 +45,10 @@ fun asText(value: Long) = "Long $value"
     (without the dot and parentheses)
 */
 
-infix fun Int.mod(value: Int) = this % value
+infix fun Int.myMod(value: Int): Int {
+    println("local")
+    return this % value
+}
 
 // Returning a result from a nested function
 fun compute() {
@@ -59,6 +64,7 @@ fun compute2() {
         if (it == 3) return@inner // return inner lambda
         print(it)
     }
+    println("this point is reachable")
 }
 
 fun compute3() {
@@ -66,12 +72,15 @@ fun compute3() {
         if (it == 3) return@forEach // return inner lambda
         print(it)
     }
+    println("this point is reachable")
 }
 
 fun main() {
     sayHello()
     sayHello("Hi")
+    sayHello("Hi", "Jan")
     sayHello(who = "John")
     println(asText(2))
-    println(20 mod 3)
+    20.myMod(2)
+    println(20 myMod 3)
 }
