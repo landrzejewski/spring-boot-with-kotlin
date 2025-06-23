@@ -180,7 +180,7 @@ fun main() {
      val contact: Contact? = null // declaration of nullable type (regular type name with a question mark)
     // val contactName = contact.name // compilation error, name cannot be accessed without checking if contact is null or use of safe call
     val nameLength = contact?.name?.length // safe call, nameLength type is Int?
-    val length = nameLength ?: 0 // Elvis operator, length type is Int
+    // val length = nameLength ?: 0 // Elvis operator, length type is Int
 
     // When we don’t expect a null value, and we want to throw an exception if one occurs, we can use the not-null assertion !!
     contact!!.name // throws an exception if contact is null
