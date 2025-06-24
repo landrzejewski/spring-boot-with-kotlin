@@ -1,5 +1,6 @@
 package pl.training.blog.adapters.output.persistence
 
+import org.springframework.stereotype.Repository
 import pl.training.commons.model.PageSpec
 import pl.training.commons.model.ResultPage
 import pl.training.blog.application.ArticleView
@@ -9,6 +10,7 @@ import pl.training.blog.domain.ArticleCategory
 import pl.training.blog.domain.Tag
 import java.util.UUID
 
+@Repository
 class HashMapArticleRepository : ArticleRepository {
 
     private val articles = mutableMapOf<UUID, Article>()

@@ -1,5 +1,9 @@
 package pl.training
 
+import org.springframework.boot.ApplicationArguments
+import org.springframework.boot.ApplicationRunner
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.runApplication
 import pl.training.blog.adapters.output.persistence.HashMapArticleRepository
 import pl.training.blog.application.ArticleAuthorActionsService
 import pl.training.blog.application.ArticleSearchService
@@ -9,13 +13,19 @@ import pl.training.blog.application.input.ArticleSearch
 import pl.training.blog.application.output.ArticleRepository
 import pl.training.blog.domain.ArticleCategory.IT
 
+@SpringBootApplication
+class Application(
+    private val authorActions: ArticleAuthorActions,
+    private val search: ArticleSearch,) : ApplicationRunner {
 
-fun main() {
-    val articleRepository: ArticleRepository = HashMapArticleRepository()
-    val authorActions: ArticleAuthorActions = ArticleAuthorActionsService(articleRepository)
-    val search: ArticleSearch = ArticleSearchService(articleRepository)
+    override fun run(args: ApplicationArguments?) {
+        val article = ArticleTemplate("Test", "Jan Kowalski", "", IT)
+        val id = authorActions.create(article)
+        println(search.findByUid(id))
+    }
 
-    val article = ArticleTemplate("Test", "Jan Kowalski", "", IT)
-    val id = authorActions.create(article)
-    println(search.findByUid(id))
+}
+
+fun main(args: Array<String>) {
+    runApplication<Application>(*args)
 }
