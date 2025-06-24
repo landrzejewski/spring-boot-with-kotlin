@@ -22,6 +22,7 @@ class Application(
         val article = ArticleTemplate("Test", "Jan Kowalski", "", IT)
         val id = authorActions.create(article)
         println(search.findByUid(id))
+        println(search.findByUid(id))
     }
 
 }
