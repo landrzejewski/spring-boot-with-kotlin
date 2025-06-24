@@ -11,7 +11,7 @@ import java.util.Currency
 class TestCardViewModel(
     private val cardOperations: CardOperations,
     private val cardInfo: CardInfo
-) : CardViewModel {
+): CardViewModel {
 
     override fun depositFunds(value: Double) = cardOperations.inflow(CARD_NUMBER, Money(value, CURRENCY))
 
