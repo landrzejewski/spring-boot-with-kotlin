@@ -39,7 +39,9 @@ val lazyValue: String by lazy {
     "Some value"
 }
 
-
+fun onChange(property: KProperty<*>, oldValue: Int, newValue: Int) {
+    println("$oldValue => $newValue")
+}
 
 class Counter {
     var value: Int by observable(0, this::onChange)
