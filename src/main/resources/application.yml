@@ -10,6 +10,7 @@ spring:
     #generate-ddl: true
     hibernate:
       ddl-auto: create-drop
+    open-in-view: false
   data:
     mongodb:
       username: admin
