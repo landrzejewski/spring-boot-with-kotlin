@@ -1,4 +1,4 @@
-package pl.training.payments.adapters.output.persistence
+package pl.training.payments.adapters.output.persistence.jpa
 
 import jakarta.persistence.Basic
 import jakarta.persistence.Column

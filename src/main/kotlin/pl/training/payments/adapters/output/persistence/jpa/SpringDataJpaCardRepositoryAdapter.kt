@@ -1,5 +1,8 @@
-package pl.training.payments.adapters.output.persistence
+package pl.training.payments.adapters.output.persistence.jpa
 
+import org.springframework.context.annotation.Primary
+import org.springframework.transaction.annotation.Isolation
+import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 import pl.training.commons.annotations.Adapter
 import pl.training.commons.model.PageSpec
@@ -8,7 +11,8 @@ import pl.training.payments.application.output.CardRepository
 import pl.training.payments.domain.Card
 import pl.training.payments.domain.CardNumber
 
-@Transactional
+@Primary
+//@Transactional
 @Adapter
 class SpringDataJpaCardRepositoryAdapter(
     private val repository: SpringDataJpaCardRepository,

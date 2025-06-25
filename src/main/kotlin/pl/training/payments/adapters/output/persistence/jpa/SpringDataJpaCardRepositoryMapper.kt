@@ -1,4 +1,4 @@
-package pl.training.payments.adapters.output.persistence
+package pl.training.payments.adapters.output.persistence.jpa
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES
