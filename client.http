@@ -1,0 +1,30 @@
+GET http://localhost:8000/api/cards?pageSize=5
+Accept: application/json
+Content-Type: application/json
+
+###
+POST http://localhost:8000/api/cards/4237251412344005/operations
+Accept: application/json
+Content-Type: application/json
+
+{
+  "operationType": "INFLOW",
+  "amount": 10000.0,
+  "currencyCode": "PLN"
+}
+
+###
+POST http://localhost:8000/api/cards/4237251412344005/operations
+Accept: application/json
+Content-Type: application/json
+
+{
+  "operationType": "PAYMENT",
+  "amount": 100.0,
+  "currencyCode": "PLN"
+}
+
+###
+GET http://localhost:8000/api/cards/4237251412344003/operations
+Accept: application/json
+Content-Type: application/json
