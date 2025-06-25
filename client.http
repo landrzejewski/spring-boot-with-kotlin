@@ -1,0 +1,53 @@
+POST http://localhost:8080/articles
+Accept: application/json
+Content-Type: application/json
+Authorization: API_KEY 1234567890
+
+{
+  "title": "ssdfsd",
+  "author": "Jan Kowalski",
+  "category": "IT",
+  "content": "..."
+}
+
+###
+
+DELETE http://localhost:8080/articles/68f73956-4aa9-4e70-a298-1f2f1a573786
+Accept: application/json
+Content-Type: application/json
+Authorization: API_KEY 1234567890
+
+###
+
+PATCH http://localhost:8080/articles/6b6d7fc9-0d9b-4646-9c5b-7ae8d84557a3
+Accept: application/json
+Content-Type: application/json
+Authorization: API_KEY 1234567890
+
+{
+  "title": "Podstawy Spring",
+  "category": "IT",
+  "content": "...",
+  "tags": ["it", "java"]
+}
+
+###
+
+PUT http://localhost:8080/articles/published/6b6d7fc9-0d9b-4646-9c5b-7ae8d84557a3
+Accept: application/json
+Content-Type: application/json
+Authorization: API_KEY 1234567890
+
+###
+
+GET http://localhost:8080/articles/6b6d7fc9-0d9b-4646-9c5b-7ae8d84557a3
+Accept: application/json
+Content-Type: application/json
+Authorization: API_KEY 1234567890
+
+###
+
+GET http://localhost:8080/categories/IT/articles?tag=it&tag=java
+Accept: application/json
+Content-Type: application/js
+Authorization: API_KEY 1234567890
