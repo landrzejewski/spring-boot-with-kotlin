@@ -1,8 +1,11 @@
 package pl.training.payments.adapters.input
 
 import org.springframework.stereotype.Component
+import pl.training.commons.model.PageSpec
+import pl.training.commons.model.ResultPage
 import pl.training.payments.application.input.CardInfo
 import pl.training.payments.application.input.CardOperations
+import pl.training.payments.domain.Card
 import pl.training.payments.domain.CardNumber
 import pl.training.payments.domain.Money
 import java.util.Currency
@@ -20,6 +23,8 @@ class TestCardViewModel(
     override fun getTransactions() = cardInfo.transactions(CARD_NUMBER)
 
     override fun getBalance() = cardInfo.balance(CARD_NUMBER)
+
+    override fun getCards(pageSpec: PageSpec) = cardInfo.cards(pageSpec)
 
     companion object {
 

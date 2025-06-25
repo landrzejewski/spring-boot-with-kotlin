@@ -3,6 +3,7 @@ plugins {
     kotlin("plugin.spring") version "1.9.25"
     id("org.springframework.boot") version "3.3.4"
     id("io.spring.dependency-management") version "1.1.6"
+    id("org.jetbrains.kotlin.plugin.jpa") version "1.9.25"
 }
 
 group = "pl.training"
@@ -18,10 +19,14 @@ repositories {
     mavenCentral()
 }
 
+val jacksonVersion = "2.17.2"
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-aop")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}")
     implementation("org.postgresql:postgresql:42.7.7")
     runtimeOnly("com.h2database:h2")
     implementation("org.jetbrains.kotlin:kotlin-reflect")

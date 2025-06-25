@@ -1,5 +1,6 @@
 package pl.training.payments.application
 
+import pl.training.commons.model.PageSpec
 import pl.training.payments.application.input.CardInfo
 import pl.training.payments.application.output.CardRepository
 import pl.training.payments.domain.*
@@ -7,6 +8,8 @@ import pl.training.payments.domain.*
 open class CardInfoService(
     private val repository: CardRepository
 ) : CardInfo {
+
+    override fun cards(pageSpec: PageSpec) = repository.getAll(pageSpec)
 
     override fun transactions(cardNumber: CardNumber) = getCard(cardNumber).registeredTransactions()
 
