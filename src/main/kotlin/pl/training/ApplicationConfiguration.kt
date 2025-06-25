@@ -12,6 +12,7 @@ import pl.training.payments.application.output.TimeProvider
 @Configuration
 class ApplicationConfiguration {
 
+    // @Profile("dev")
     // @Scope("prototype")
     @Bean(name = ["cardOperationsService"], initMethod = "initialize", destroyMethod = "destroy")
     fun cardOperationsService(
