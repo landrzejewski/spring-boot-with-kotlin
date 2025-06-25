@@ -11,8 +11,8 @@ import pl.training.extras.SearchCriteria.Matcher.EQUAL
 import pl.training.extras.SearchCriteria.Matcher.START_WITH
 import java.time.Instant
 
-@Transactional
-@Component
+//@Transactional
+//@Component
 class SpringDataExamples(private val repository: SpringDataJpaOrderRepository) : ApplicationRunner {
 
     override fun run(args: ApplicationArguments) {
