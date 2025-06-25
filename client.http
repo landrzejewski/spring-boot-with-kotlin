@@ -25,6 +25,7 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/api/cards/4237251412344005/operations
+GET http://localhost:8080/api/cards/4237251412344003/operations
 Accept: application/json
+Accept-Language: en_GB
 Content-Type: application/json
