@@ -8,6 +8,8 @@ import org.springframework.security.authentication.ProviderManager
 import org.springframework.security.authentication.TestingAuthenticationToken
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.authorization.AuthorizationManager
+import org.springframework.security.config.Customizer.withDefaults
+import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.core.userdetails.User
@@ -19,6 +21,8 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.security.provisioning.JdbcUserDetailsManager
 import org.springframework.security.provisioning.UserDetailsManager
+import org.springframework.security.web.SecurityFilterChain
+import pl.training.security.BasicAuthenticationEntryPoint
 import javax.sql.DataSource
 
 
@@ -59,13 +63,13 @@ class SecurityConfiguration {
         .authorities("read", "write")
         .build()*/
 
-   /* @Bean
-    fun userDetailsService() = UserDetailsService { username ->
-        if (!username.equals("admin", true))
-            throw UsernameNotFoundException("User not found")
-        else
-            defaultUser()
-    }*/
+    /* @Bean
+     fun userDetailsService() = UserDetailsService { username ->
+         if (!username.equals("admin", true))
+             throw UsernameNotFoundException("User not found")
+         else
+             defaultUser()
+     }*/
 
     /*@Bean
     fun userDetailsManager(dataSource: DataSource): UserDetailsManager {
@@ -75,5 +79,31 @@ class SecurityConfiguration {
         // manager.setAuthoritiesByUsernameQuery("select username, authority from authorities where username = ?")
         return manager
     }*/
+
+    @Bean
+    fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
+        return http
+            .httpBasic(withDefaults())
+           /*.httpBasic {
+                it
+                    .realmName("training")
+                    .authenticationEntryPoint(BasicAuthenticationEntryPoint())
+            }*/
+            //.formLogin(withDefaults())
+            .formLogin {
+                it
+                    .loginPage("/login.html")
+                //.usernameParameter("username")
+                //.passwordParameter("password")
+                //.successHandler(new CustomAuthenticationSuccessHandler())
+                //.failureHandler(new CustomAuthenticationFailureHandler())
+            }
+            .authorizeHttpRequests {
+                it
+                    .requestMatchers("/login.html").permitAll()
+                    .anyRequest().authenticated()
+            }
+            .build()
+    }
 
 }
