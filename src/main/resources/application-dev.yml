@@ -4,6 +4,10 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2
 #  security:
 #    user:
 #      name: admin

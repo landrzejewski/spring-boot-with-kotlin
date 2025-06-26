@@ -2,6 +2,8 @@ package pl.training
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.HttpMethod.GET
+import org.springframework.http.HttpMethod.POST
 import org.springframework.security.authentication.AuthenticationManager
 import org.springframework.security.authentication.AuthenticationProvider
 import org.springframework.security.authentication.ProviderManager
@@ -22,7 +24,10 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.security.provisioning.JdbcUserDetailsManager
 import org.springframework.security.provisioning.UserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher
+import org.springframework.web.cors.CorsConfiguration
 import pl.training.security.BasicAuthenticationEntryPoint
+import pl.training.security.RequestUrlAuthorizationManager
 import javax.sql.DataSource
 
 
@@ -98,12 +103,34 @@ class SecurityConfiguration {
                 //.successHandler(new CustomAuthenticationSuccessHandler())
                 //.failureHandler(new CustomAuthenticationFailureHandler())
             }
+            .logout {
+                it
+                    .logoutRequestMatcher(AntPathRequestMatcher("/logout.html"))
+                    .logoutSuccessUrl("/")
+                    .invalidateHttpSession(true)
+            }
             .authorizeHttpRequests {
                 it
                     .requestMatchers("/login.html").permitAll()
+                    .requestMatchers("/h2/**").hasAnyRole("ADMIN")
+                    .requestMatchers(GET, "/api/users").authenticated()
+                    .requestMatchers(POST, "/api/cards").hasAnyRole("USER", "ADMIN")
+                    //anyRequest().access(RequestUrlAuthorizationManager())
                     .anyRequest().authenticated()
             }
+            // .sessionManagement { it.disable() }
+            .headers { it.frameOptions { config -> config.disable() } }
+            .cors { it.configurationSource { request -> corsConfiguration() } }
+            .csrf { it.ignoringRequestMatchers("/api/**") }
             .build()
+    }
+
+    @Bean
+    fun corsConfiguration() = CorsConfiguration().apply {
+        allowedOrigins = listOf("http://localhost:8080")
+        allowedHeaders = listOf("*")
+        allowedMethods = listOf("GET", "POST", "PUT", "PATCH", "DELETE")
+        allowCredentials = true
     }
 
 }
