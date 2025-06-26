@@ -30,6 +30,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${jacksonVersion}")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${jacksonVersion}")
     implementation("org.postgresql:postgresql:42.7.7")
