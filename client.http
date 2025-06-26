@@ -1,7 +1,8 @@
 GET http://localhost:8080/api/cards?pageSize=5
 Accept: application/json
 Content-Type: application/json
-Authorization: Basic YWRtasssW46YWRtaW4=
+#Authorization: Basic YWRtaW46YWRtaW4=
+#Authorization: bearer {{token}}
 
 ###
 POST http://localhost:8080/api/cards/4237251412344005/operations
@@ -33,7 +34,23 @@ Accept-Language: en_GB
 Content-Type: application/json
 
 ###
+
 GET http://localhost:8080/api/users/me
 Accept: application/json
 Content-Type: application/json
 Authorization: Basic YWRtaW46YWRtaW4=
+
+###
+
+POST http://localhost:8080/api/tokens
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+> {%
+    client.global.set('token', response.body.token);
+%}

@@ -22,3 +22,5 @@ spring:
       auto-index-creation: true
   messages:
     basename: exceptions,text
+jwt:
+  secret: dfgsdzxcwsqqalgg

@@ -24,10 +24,12 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager
 import org.springframework.security.provisioning.JdbcUserDetailsManager
 import org.springframework.security.provisioning.UserDetailsManager
 import org.springframework.security.web.SecurityFilterChain
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import org.springframework.web.cors.CorsConfiguration
 import pl.training.security.BasicAuthenticationEntryPoint
 import pl.training.security.RequestUrlAuthorizationManager
+import pl.training.security.jwt.JwtAuthenticationFilter
 import javax.sql.DataSource
 
 
@@ -86,8 +88,9 @@ class SecurityConfiguration {
     }*/
 
     @Bean
-    fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
+    fun securityFilterChain(http: HttpSecurity, jwtFilter: JwtAuthenticationFilter): SecurityFilterChain {
         return http
+            .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter::class.java)
             .httpBasic(withDefaults())
            /*.httpBasic {
                 it
@@ -112,6 +115,7 @@ class SecurityConfiguration {
             .authorizeHttpRequests {
                 it
                     .requestMatchers("/login.html").permitAll()
+                    .requestMatchers("/api/tokens").permitAll()
                     .requestMatchers("/h2/**").hasAnyRole("ADMIN")
                     .requestMatchers(GET, "/api/users").authenticated()
                     .requestMatchers(POST, "/api/cards").hasAnyRole("USER", "ADMIN")
