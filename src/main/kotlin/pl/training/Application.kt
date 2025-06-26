@@ -20,7 +20,7 @@ class Application(private val cardRepository: CardRepository) :
         val cardNumber = CardNumber("4237251412344005")
         val currency = Currency.getInstance("PLN")
         val card = Card(id = CardId(), number = cardNumber, expiration = LocalDate.now().plusYears(1), currency = currency)
-        cardRepository.save(card)
+        //cardRepository.save(card)
     }
 
 }

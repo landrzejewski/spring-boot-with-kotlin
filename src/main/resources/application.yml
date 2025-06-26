@@ -7,9 +7,9 @@ spring:
     hikari:
       maximum-pool-size: 5
   jpa:
-    #generate-ddl: true
-    hibernate:
-      ddl-auto: create-drop
+    generate-ddl: true
+    #hibernate:
+    #  ddl-auto: create-drop
     open-in-view: false
   data:
     mongodb:

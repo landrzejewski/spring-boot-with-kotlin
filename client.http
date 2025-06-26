@@ -1,11 +1,13 @@
 GET http://localhost:8080/api/cards?pageSize=5
 Accept: application/json
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW4=
 
 ###
 POST http://localhost:8080/api/cards/4237251412344005/operations
 Accept: application/json
 Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW4=
 
 {
   "operationType": "INFLOW",
