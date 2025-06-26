@@ -26,4 +26,10 @@ findByCategoryAndTags:
   
 ###
 
-secure the blog, access to ArticleAuthorActionsRestController should be only for the ADMIN role, and for ArticleSearchRestController endpoints only for the ADMIN and USER roles. Users should be stored in the database
+Secure the blog, access to ArticleAuthorActionsRestController should be only for the ADMIN role, and for ArticleSearchRestController endpoints only for the ADMIN and USER roles. Users should be stored in the database
+
+###
+
+Write your own Authentication Provider variant that allows you to authenticate a user using API_KEY sent in the Authorization header
+
+Authorization API_KEY xxxx-xxx-xxxx
