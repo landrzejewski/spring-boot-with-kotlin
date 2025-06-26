@@ -24,5 +24,6 @@ findByTags:
 findByCategoryAndTags:  
   select new pl.training.blog.application.ArticleView(a.id, a.title, a.author) from Articles a join a.tags t where a.category = :category and t.name in :tags group by a having count (a) = :count
   
+###
 
-
+secure the blog, access to ArticleAuthorActionsRestController should be only for the ADMIN role, and for ArticleSearchRestController endpoints only for the ADMIN and USER roles. Users should be stored in the database
