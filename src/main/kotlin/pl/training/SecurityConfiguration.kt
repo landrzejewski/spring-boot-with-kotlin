@@ -67,13 +67,13 @@ class SecurityConfiguration {
             defaultUser()
     }*/
 
-    @Bean
+    /*@Bean
     fun userDetailsManager(dataSource: DataSource): UserDetailsManager {
         // return InMemoryUserDetailsManager(defaultUser())
         val manager = JdbcUserDetailsManager(dataSource)
         // manager.setUsersByUsernameQuery("select username, password, enabled from users where username = ?")
         // manager.setAuthoritiesByUsernameQuery("select username, authority from authorities where username = ?")
         return manager
-    }
+    }*/
 
 }

@@ -31,3 +31,9 @@ GET http://localhost:8080/api/cards/4237251412344003/operations
 Accept: application/json
 Accept-Language: en_GB
 Content-Type: application/json
+
+###
+GET http://localhost:8080/api/users/me
+Accept: application/json
+Content-Type: application/json
+Authorization: Basic YWRtaW46YWRtaW4=
