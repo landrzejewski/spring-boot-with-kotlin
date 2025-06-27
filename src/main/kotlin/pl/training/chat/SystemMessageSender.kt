@@ -10,6 +10,7 @@ import java.time.Instant
 class SystemMessageSender(
     @Value("\${user-list-topic}") private val userListTopic: String,
     @Value("\${main-topic}") private val mainTopic: String,
+    @Value("\${time-topic}") private val timeTopic: String,
     private val messagingTemplate: SimpMessagingTemplate,
     private val repository: InMemoryChatUserRepository,
     @Value("\${update-contacts-delay-in-mills}") private val updateDelay: Long,
@@ -25,8 +26,11 @@ class SystemMessageSender(
         val chatUsers = repository.getAllUsers()
             .map { it.copy(privateId = "") }
             .filter { !it.hidden }
-        val executionTime = Instant.now().plusMillis(updateDelay)
-        taskScheduler.schedule({ messagingTemplate.convertAndSend(userListTopic, chatUsers) }, executionTime)
+        messagingTemplate.convertAndSend(userListTopic, chatUsers)
+    }
+
+    fun updateUserTime() {
+        messagingTemplate.convertAndSend(timeTopic, Instant.now())
     }
 
     companion object {

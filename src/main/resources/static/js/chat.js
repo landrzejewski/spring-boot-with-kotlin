@@ -3,12 +3,14 @@ $(() => {
     const clientId = crypto.randomUUID();
     const privateClientId = crypto.randomUUID();
     const messages = $('#messages');
+    const serverInfo = $('#serverInfo');
     const username = $('#username');
     const recipients = $('#recipients');
     const message = $('#message');
     const connectBtn = $('#connectBtn');
     const disconnectBtn = $('#disconnectBtn');
     const isVisibleBtn = $('#isVisibleBtn');
+    const isBusyBtn = $('#isBusyBtn');
     const sendBtn = $('#sendBtn');
     const disabledProperty = 'disabled';
 
@@ -25,6 +27,7 @@ $(() => {
         disconnectBtn.prop(disabledProperty, !isConnected);
         sendBtn.prop(disabledProperty, !isConnected);
         isVisibleBtn.prop(disabledProperty, !isConnected);
+        isBusyBtn.prop(disabledProperty, !isConnected);
     };
 
     const connect = () => {
@@ -38,6 +41,8 @@ $(() => {
         client.subscribe('/main', onMessage)
         client.subscribe('/user-list', onUserListUpdated)
         client.subscribe('/private-' + privateClientId, onMessage)
+        //client.subscribe('/time', onTimeUpdated)
+        client.send('/ws/readiness', {}, {});
     };
 
     const disconnect = () => {
@@ -67,11 +72,18 @@ $(() => {
 
     const onUserListUpdated = (socketMessage) => {
         const userList = JSON.parse(socketMessage.body);
-        console.log(userList);
         recipients.empty();
         userList
             .filter(user => user.id !== clientId)
-            .forEach(user => $(`<option value="${user.id}">${user.name} (${user.id})</option>`).appendTo(recipients));
+            .forEach(user => {
+                const status = user.busy ? ' busy' : '';
+                $(`<option value="${user.id}">${user.name} (${user.id}) ${status}</option>`).appendTo(recipients)
+            });
+    };
+
+    const onTimeUpdated = (socketMessage) => {
+        const timestamp = JSON.parse(socketMessage.body);
+        serverInfo.text('System time: ' + new Date(timestamp).toLocaleTimeString());
     };
 
     function changeVisibility() {
@@ -79,7 +91,15 @@ $(() => {
         if($(this).is(':checked')) {
             hidden = true;
         }
-        client.send('/ws/statuses', {}, JSON.stringify({hidden}));
+        client.send('/ws/statuses', {}, JSON.stringify({hidden, busy: isBusyBtn.is(':checked')}));
+    }
+
+    function changeIsBusy() {
+        let busy = false;
+        if($(this).is(':checked')) {
+            busy = true;
+        }
+        client.send('/ws/statuses', {}, JSON.stringify({busy, hidden: isVisibleBtn.is(':checked')}));
     }
 
     updateView(false);
@@ -87,5 +107,5 @@ $(() => {
     disconnectBtn.click(disconnect);
     sendBtn.click(send);
     isVisibleBtn.change(changeVisibility);
-
+    isBusyBtn.change(changeIsBusy);
 });

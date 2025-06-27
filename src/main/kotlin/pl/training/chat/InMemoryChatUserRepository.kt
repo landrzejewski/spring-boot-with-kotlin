@@ -24,8 +24,8 @@ class InMemoryChatUserRepository {
         users.values.stream().filter { it.id in clientIds }
     }
 
-    fun updateStatus(socketId: String, isHidden: Boolean) = lock.write {
-        getUser(socketId)?.let { users[socketId] = it.copy(hidden = isHidden) }
+    fun updateStatus(socketId: String, isHidden: Boolean, isBusy: Boolean) = lock.write {
+        getUser(socketId)?.let { users[socketId] = it.copy(hidden = isHidden, busy = isBusy) }
     }
 
 }

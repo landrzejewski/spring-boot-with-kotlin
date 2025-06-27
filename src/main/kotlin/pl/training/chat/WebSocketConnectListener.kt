@@ -22,7 +22,6 @@ class WebSocketConnectListener(
         repository.addUser(socketId, user)
         logger.info("Socket with id: ${user.name} is connected")
         systemMessageSender.sendToAll("User ${user.name} is connected")
-        systemMessageSender.updateUserList()
     }
 
     private fun createUser(event: SessionConnectEvent): ChatUser {

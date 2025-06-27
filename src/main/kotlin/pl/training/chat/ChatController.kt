@@ -36,7 +36,12 @@ class ChatController(
 
     @MessageMapping("/statuses")
     fun onStatusUpdate(chatStatus: ChatStatus, @Header("simpSessionId") socketId: String) {
-        repository.updateStatus(socketId, chatStatus.hidden)
+        repository.updateStatus(socketId, chatStatus.hidden, chatStatus.busy)
+        systemMessageSender.updateUserList()
+    }
+
+    @MessageMapping("/readiness")
+    fun onReady() {
         systemMessageSender.updateUserList()
     }
 
