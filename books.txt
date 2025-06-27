@@ -1,0 +1,3 @@
+https://leanpub.com/b/kotlin_mm
+https://www.manning.com/books/spring-in-action-sixth-edition
+https://www.manning.com/books/spring-security-in-action-second-edition
