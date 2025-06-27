@@ -1,4 +1,9 @@
-main-topic: /main
-user-list-topic: /user-list
-private-topic-prefix: /private-
-update-contacts-delay-in-mills: 100
+spring:
+  data:
+    mongodb:
+      username: admin
+      password: admin
+      database: training
+      host: localhost
+      port: 27017
+      authentication-database: admin
