@@ -10,10 +10,17 @@ import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 import org.springframework.web.client.RestTemplate
 import org.springframework.web.cors.CorsConfiguration
+import pl.training.security.DefaultGrantedAuthoritiesMapper
 import pl.training.security.KeycloakGrantedAuthoritiesMapper
 import pl.training.security.KeycloakJwtGrantedAuthoritiesConverter
 import pl.training.security.KeycloakLogoutHandler
 
+/*
+Definiowanie First login flow dla logowania przez GitHub
+Authentication -> Create flow (detect existing user flow, Basic flow) -> Add step
+(Detect existing broker user, Automatically set existing user)
+Identity providers -> github -> First login flow -> detect existing user flow
+ */
 @Configuration
 class SecurityConfiguration {
 
@@ -56,7 +63,7 @@ class SecurityConfiguration {
 
     // Client scopes -> Client scope details (roles) -> Mapper details -> Add to userinfo enabled (Keycloak Admin console)
     fun userInfoCustomizer(userInfoEndpointConfig: OAuth2LoginConfigurer<HttpSecurity>.UserInfoEndpointConfig) {
-        userInfoEndpointConfig.userAuthoritiesMapper(KeycloakGrantedAuthoritiesMapper())
+        userInfoEndpointConfig.userAuthoritiesMapper(DefaultGrantedAuthoritiesMapper())
     }
 
     @Bean

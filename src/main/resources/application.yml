@@ -29,10 +29,13 @@ spring:
           issuer-uri: http://localhost:8100/realms/training
       client:
         registration:
-          keycloak:
-            client-id: training-client
-            scope:
-              - openid
-        provider:
-          keycloak:
-            issuer-uri: http://localhost:8100/realms/training
+          github:  # redirect url  http://localhost:8080/login/oauth2/code/github
+            client-id: Ov23lioslxWOWdlXtTdc
+            client-secret: 604682956900ae22c08d7d12d403cd6427895b61
+#          keycloak:
+#            client-id: training-client
+#            scope:
+#              - openid
+#        provider:
+#          keycloak:
+#            issuer-uri: http://localhost:8100/realms/training
