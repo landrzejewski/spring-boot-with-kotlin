@@ -21,7 +21,6 @@ import pl.training.payments.CardTestFixtures.validCardEntity
 @WithMockUser(roles = ["ADMIN"])
 @SpringBootTest(classes = [Application::class], webEnvironment = DEFINED_PORT)
 @AutoConfigureMockMvc
-@ExtendWith(SpringExtension::class)
 class CardOperationsRestControllerTest {
 
     @Autowired

@@ -15,7 +15,6 @@ import kotlin.test.assertEquals
 @ActiveProfiles("test")
 @AutoConfigureTestDatabase(replace = NONE)
 @DataJpaTest
-@ExtendWith(SpringExtension::class)
 class SpringDataJpaCardRepositoryTest {
 
     @Autowired
