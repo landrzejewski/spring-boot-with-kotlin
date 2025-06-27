@@ -10,7 +10,6 @@ import pl.training.payments.domain.CardTransactionType.INFLOW
 import pl.training.payments.domain.CardTransactionType.PAYMENT
 import pl.training.payments.domain.Money
 import java.util.Currency
-import kotlin.collections.map
 
 @Mapper
 class CardRestMapper {

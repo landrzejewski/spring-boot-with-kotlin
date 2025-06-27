@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.MongoRepository
 
 interface SpringDataMongoCardRepository : MongoRepository<CardDocument, String> {
 
-    fun findByNumber(number: String): CardDocument?
+    fun findByNumber(cardNumber: String): CardDocument?
 
 }

@@ -1,15 +1,13 @@
 package pl.training.payments.adapters.output.persistence.jpa
 
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.Query
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
+import org.springframework.data.repository.CrudRepository
 
-interface SpringDataJpaCardRepository : JpaRepository<CardEntity, String> {
-    // CrudRepository<CardEntity, String>
-    // Repository<CardEntity, String>
+interface SpringDataJpaCardRepository : CrudRepository<CardEntity, String> {
 
-    fun findByNumber(number: String): CardEntity?
+    fun findAll(pageable: Pageable): Page<CardEntity>
 
-    @Query("select c from Card c where c.currencyCode = :currencyCode")
-    fun findByCurrencyCode(currencyCode: String): List<CardEntity>
+    fun findByNumber(cardNumber: String): CardEntity?
 
 }

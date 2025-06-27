@@ -9,8 +9,6 @@ import pl.training.commons.annotations.Mapper
 import pl.training.commons.model.PageSpec
 import pl.training.commons.model.ResultPage
 import java.util.Currency
-import kotlin.collections.forEach
-import kotlin.collections.map
 
 @Mapper
 class SpringDataMongoCardRepositoryMapper {
@@ -34,7 +32,6 @@ class SpringDataMongoCardRepositoryMapper {
         return card
     }
 
-    fun toDocument(cardNumber: CardNumber) = cardNumber.value
 
     fun toDocument(pageSpec: PageSpec) = PageRequest.of(pageSpec.index, pageSpec.size)
 

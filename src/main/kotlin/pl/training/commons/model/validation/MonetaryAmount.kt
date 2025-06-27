@@ -15,6 +15,7 @@ annotation class MonetaryAmount(
 
     val payload: Array<KClass<out Payload>> = [],
 
-    val maxValue: Double = 10_000.0,
+    val maxValue: Double = 10_000.0
 
 )
+

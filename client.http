@@ -1,23 +1,24 @@
-GET http://localhost:8080/api/cards?pageSize=5
+GET http://localhost:8000/api/cards
 Accept: application/json
 Content-Type: application/json
-#Authorization: Basic YWRtaW46YWRtaW4=
+#Authorization: Basic amFuOjEyMw==
 Authorization: bearer {{token}}
 
 ###
-POST http://localhost:8080/api/cards/4237251412344005/operations
+POST http://localhost:8000/api/cards/4237251412344005/operations
 Accept: application/json
 Content-Type: application/json
-Authorization: Basic YWRtaW46YWRtaW4=
+#Authorization: Basic amFuOjEyMw==
+Authorization: bearer {{token}}
 
 {
   "operationType": "INFLOW",
-  "amount": 10000.0,
+  "amount": 200.0,
   "currencyCode": "PLN"
 }
 
 ###
-POST http://localhost:8080/api/cards/4237251412344005/operations
+POST http://localhost:8000/api/cards/4237251412344005/operations
 Accept: application/json
 Content-Type: application/json
 
@@ -28,55 +29,26 @@ Content-Type: application/json
 }
 
 ###
-GET http://localhost:8080/api/cards/4237251412344003/operations
+GET http://localhost:8000/api/cards/4237251412344005/operations
 Accept: application/json
-Accept-Language: en_GB
 Content-Type: application/json
 
 ###
-
-GET http://localhost:8080/api/users/me
+GET http://localhost:8000/api/users/me
 Accept: application/json
 Content-Type: application/json
-Authorization: Basic YWRtaW46YWRtaW4=
+Authorization: Basic amFuOjEyMw==
 
 ###
-
-POST http://localhost:8080/api/tokens
+POST http://localhost:8000/api/tokens
 Accept: application/json
 Content-Type: application/json
 
 {
-  "username": "admin",
-  "password": "admin"
+  "username": "jan",
+  "password": "123"
 }
 
 > {%
     client.global.set('token', response.body.token);
-%}
-
-###
-//@no-redirect
-//@no-cookie-jar
-POST http://localhost:8100/realms/training/protocol/openid-connect/token
-Content-Type: application/x-www-form-urlencoded
-
-client_id=training-client&grant_type=password&username=jan@training.pl&password=123
-
-> {%
-    client.global.set('token', response.body.access_token);
-    client.global.set('refreshToken', response.body.refresh_token);
-%}
-
-###
-//@no-redirect
-//@no-cookie-jar
-POST http://localhost:8100/realms/training/protocol/openid-connect/token
-Content-Type: application/x-www-form-urlencoded
-
-client_id=training-client&grant_type=refresh_token&refresh_token={{ refreshToken }}
-
-> {%
-    client.global.set('token', response.body.access_token);
-    client.global.set('refreshToken', response.body.refresh_token);
 %}

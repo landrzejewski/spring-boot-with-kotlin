@@ -7,32 +7,21 @@ spring:
     hikari:
       maximum-pool-size: 5
   jpa:
-    generate-ddl: true
-    #hibernate:
-    #  ddl-auto: create-drop
     open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+    #generate-ddl: true
+    #show-sql: true
   data:
     mongodb:
       username: admin
       password: admin
-      database: payments
+      database: training
       host: localhost
       port: 27017
       authentication-database: admin
       auto-index-creation: true
   messages:
     basename: exceptions,text
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          issuer-uri: http://localhost:8100/realms/training
-      client:
-        registration:
-          keycloak:
-            client-id: training-client
-            scope:
-              - openid
-        provider:
-          keycloak:
-            issuer-uri: http://localhost:8100/realms/training
+jwt:
+  secret: sdfbk3js1zcvabfvae

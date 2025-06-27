@@ -1,6 +1,5 @@
 package pl.training.payments.application
 
-import pl.training.commons.annotations.Atomic
 import pl.training.payments.application.input.CardOperations
 import pl.training.payments.application.output.CardEventPublisher
 import pl.training.payments.application.output.CardRepository
@@ -12,7 +11,6 @@ import pl.training.payments.domain.CardTransactionType.PAYMENT
 import java.util.function.Consumer
 import java.util.logging.Logger
 
-@Atomic
 open class CardOperationsService(
     private val repository: CardRepository,
     private val timeProvider: TimeProvider,

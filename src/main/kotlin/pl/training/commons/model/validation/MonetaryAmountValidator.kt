@@ -12,14 +12,13 @@ class MonetaryAmountValidator : ConstraintValidator<MonetaryAmount, BigDecimal> 
         maxValue = constraintAnnotation.maxValue
     }
 
-    override fun isValid(value: BigDecimal, conext: ConstraintValidatorContext) =
+    override fun isValid(value: BigDecimal, context: ConstraintValidatorContext) =
         try {
             with(value.toDouble()) {
                 this in 0.0..maxValue
             }
-        } catch (e: NumberFormatException) {
+        } catch (_: NumberFormatException) {
             false
         }
 
 }
-

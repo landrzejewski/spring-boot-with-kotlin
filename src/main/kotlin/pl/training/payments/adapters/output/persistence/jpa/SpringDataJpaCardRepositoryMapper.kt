@@ -7,17 +7,14 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.PageRequest
-import pl.training.commons.annotations.Mapper
-import pl.training.commons.model.PageSpec
-import pl.training.commons.model.ResultPage
 import pl.training.payments.domain.Card
 import pl.training.payments.domain.CardId
 import pl.training.payments.domain.CardNumber
 import pl.training.payments.domain.CardTransaction
+import pl.training.commons.annotations.Mapper
+import pl.training.commons.model.PageSpec
+import pl.training.commons.model.ResultPage
 import java.util.Currency
-import kotlin.collections.forEach
-import kotlin.collections.map
-import kotlin.text.isNotEmpty
 
 @Mapper
 class SpringDataJpaCardRepositoryMapper {
@@ -42,8 +39,6 @@ class SpringDataJpaCardRepositoryMapper {
         }
         return card
     }
-
-    fun toEntity(cardNumber: CardNumber) = cardNumber.value
 
     fun toEntity(pageSpec: PageSpec) = PageRequest.of(pageSpec.index, pageSpec.size)
 

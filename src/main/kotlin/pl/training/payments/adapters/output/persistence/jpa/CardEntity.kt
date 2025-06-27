@@ -10,8 +10,6 @@ import jakarta.persistence.Lob
 import jakarta.persistence.Table
 import java.time.LocalDate
 import java.util.Objects
-import kotlin.jvm.java
-import kotlin.jvm.javaClass
 
 @Entity(name = "Card")
 @Table(indexes = [Index(name = "card_number", columnList = "number")])
