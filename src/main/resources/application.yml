@@ -1,27 +1,31 @@
 spring:
-  datasource:
-    username: admin
-    password: admin
-    url: jdbc:postgresql://localhost:5432/payments
-    driver-class-name: org.postgresql.Driver
-    hikari:
-      maximum-pool-size: 5
-  jpa:
-    open-in-view: false
-    hibernate:
-      ddl-auto: create-drop
-    #generate-ddl: true
-    #show-sql: true
-  data:
-    mongodb:
-      username: admin
-      password: admin
-      database: training
-      host: localhost
-      port: 27017
-      authentication-database: admin
-      auto-index-creation: true
-  messages:
-    basename: exceptions,text
-jwt:
-  secret: sdfbk3js1zcvabfvae
+  mail:
+    host: localhost
+    port: 10025
+  #    host: smtp.gmail.com
+  #    port: 587
+  #    username: username
+  #    password: password
+  #    properties:
+  #      mail.smtp.auth: true
+  #      mail.smtp.starttls.enable: true
+  #      mail.smtp.ssl.trust: smtp.gmail.com
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      bootstrap-servers: localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: ${random.uuid}
+      properties:
+        spring.json.trusted.packages: pl.training.kafka
+  jms:
+    listener:
+      max-concurrency: 10
+      min-concurrency: 1
+    pub-sub-domain: false # queue if false nad topic if true
+  artemis:
+    broker-url: tcp://localhost:61616 # default
