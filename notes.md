@@ -20,3 +20,7 @@ https://docs.microsoft.com/en-us/office/troubleshoot/excel/determine-a-leap-year
 
 https://miro.com/app/board/uXjVMkTkdFk=/?share_link_id=208128619938
 https://www.jmix.io/cuba-blog/kotlin-dsl-from-theory-to-practice/
+
+https://leanpub.com/b/kotlin_mm
+https://www.manning.com/books/spring-in-action-sixth-edition
+https://www.manning.com/books/spring-security-in-action-second-edition
