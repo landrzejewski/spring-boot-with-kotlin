@@ -672,35 +672,3 @@ management:
       prometheus:
         enabled: true
 ```
-
-## Troubleshooting
-
-### Common Issues
-
-1. **401 Unauthorized**: Check token expiration and issuer-uri configuration
-2. **403 Forbidden**: Verify role mappings in Keycloak and Spring Security
-3. **Connection refused**: Ensure Keycloak is running and accessible
-4. **Invalid token**: Check JWT signature and public key configuration
-
-### Debug Tips
-
-1. Enable debug logging for Spring Security
-2. Use JWT debugger (jwt.io) to inspect tokens
-3. Check Keycloak logs for authentication issues
-4. Verify network connectivity between services
-
-## Conclusion
-
-You now have a fully functional Kotlin Spring Boot application acting as a resource server protected by Keycloak. This setup provides:
-
-- OAuth 2.0/OpenID Connect authentication
-- Role-based access control
-- Stateless authentication using JWT tokens
-- Integration with Keycloak as the identity provider
-
-Next steps could include:
-- Implementing refresh token handling
-- Adding multi-tenancy support
-- Integrating with a frontend application
-- Implementing fine-grained permissions
-- Adding audit logging

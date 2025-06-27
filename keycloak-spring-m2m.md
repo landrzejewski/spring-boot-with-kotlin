@@ -888,26 +888,3 @@ class KeycloakHealthIndicator(
     }
 }
 ```
-
-## Troubleshooting
-
-### Common Issues:
-
-1. **401 Unauthorized**: Check client credentials and role assignments
-2. **Connection refused**: Ensure Keycloak is running and accessible
-3. **Invalid token**: Verify issuer-uri matches in both services
-4. **No authorities**: Check the JWT converter is extracting roles correctly
-
-### Debug JWT Content
-Use jwt.io to decode and inspect your access tokens.
-
-## Summary
-
-This example demonstrates:
-- Service A obtaining tokens from Keycloak using Client Credentials
-- Service A calling Service B with RestTemplate/RestClient (no WebFlux)
-- Service B validating tokens and checking roles
-- Proper security configuration for both client and resource server
-- Keycloak-specific JWT claim extraction for roles
-
-The setup ensures secure M2M communication with proper authentication and authorization using industry-standard OAuth2/OIDC protocols.
